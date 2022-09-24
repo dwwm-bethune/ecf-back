@@ -31,4 +31,14 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'info' => [
+        'company' => 'My company',
+        'email' => 'email@example.com',
+        'phone' => '+33 12 34 56 78',
+        'fax' => '+33 12 34 56 79',
+        'address' => '3 rue des Champs Elysées',
+        'zip' => '75008',
+        'country' => 'France',
+    ],
+
 ];

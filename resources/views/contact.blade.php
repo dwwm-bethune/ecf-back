@@ -52,14 +52,12 @@
                 <div class="card bg-light mb-3">
                     <div class="card-header bg-success text-white text-uppercase"><i class="fa fa-home"></i> Adresse</div>
                     <div class="card-body">
-                        <p>3 rue des Champs Elysées</p>
-                        <p>75008 PARIS</p>
-                        <p>France</p>
-                        <p>Email : email@example.com</p>
-                        <p>Tel. +33 12 56 11 51 84</p>
-
+                        <p>{{ config('services.info.address') }}</p>
+                        <p>{{ config('services.info.zip') }} {{ config('services.info.city') }}</p>
+                        <p>{{ config('services.info.country') }}</p>
+                        <p>Email : {{ config('services.info.email') }}</p>
+                        <p>Tel. {{ config('services.info.phone') }}</p>
                     </div>
-
                 </div>
             </div>
         </div>
