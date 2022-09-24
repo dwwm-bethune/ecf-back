@@ -3,7 +3,7 @@
 @section('content')
     <section class="jumbotron text-center">
         <div class="container">
-            <h1 class="jumbotron-heading">Produits</h1>
+            <h1 class="jumbotron-heading">Catégorie</h1>
             <p class="lead text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, veniam, eius aliquam quidem rem sunt nam quaerat facilis ex error placeat ipsa illo sed inventore soluta ipsum cumque atque ea?</p>
         </div>
     </section>
@@ -14,7 +14,8 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('sweet-home') }}">Accueil</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Produits</li>
+                        <li class="breadcrumb-item"><a href="{{ route('categories.show', [1, 'a']) }}">Catégorie</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Sous catégorie</li>
                     </ol>
                 </nav>
             </div>
@@ -55,7 +56,7 @@
                 <div class="card bg-light mb-3">
                     <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Catégories</div>
                     <ul class="list-group category_block">
-                        <li class="list-group-item"><a href="{{ route('categories.show', [1, 'a']) }}egories.show', [1, 'a']) }}">Cras justo odio</a></li>
+                        <li class="list-group-item"><a href="{{ route('categories.show', [1, 'a']) }}">Cras justo odio</a></li>
                         <li class="list-group-item"><a href="{{ route('categories.show', [1, 'a']) }}">Dapibus ac facilisis in</a></li>
                         <li class="list-group-item"><a href="{{ route('categories.show', [1, 'a']) }}">Morbi leo risus</a></li>
                         <li class="list-group-item"><a href="{{ route('categories.show', [1, 'a']) }}">Porta ac consectetur ac</a></li>
@@ -203,7 +204,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 @endsection

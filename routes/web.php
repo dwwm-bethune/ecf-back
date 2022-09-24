@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -20,4 +21,6 @@ Route::get('/', function () {
 })->name('sweet-home');
 
 Route::get('/produits', [ProductController::class, 'index'])->name('products');
+Route::get('/produits/{product}-{slug}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/categorie/{category}-{slug}', [CategoryController::class, 'show'])->name('categories.show');
 Route::get('/contactez-nous', [ContactController::class, 'index'])->name('contact');

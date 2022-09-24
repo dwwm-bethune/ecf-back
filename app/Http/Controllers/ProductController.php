@@ -8,4 +8,9 @@ class ProductController
     {
         return view('products.index');
     }
+
+    public function show($product, $slug)
+    {
+        return view('products.show');
+    }
 }
