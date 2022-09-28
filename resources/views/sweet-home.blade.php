@@ -39,7 +39,7 @@
                     <div class="card-header bg-success text-white text-uppercase">
                         <i class="fa fa-heart"></i> Coup de coeur
                     </div>
-                    <img class="img-fluid border-0" src="{{ $randomFavorite->image }}" alt="Card image cap">
+                    <img class="img-fluid border-0" src="{{ $randomFavorite->image }}" alt="{{ $randomFavorite->title }}">
                     <div class="card-body">
                         <h4 class="card-title text-center"><a href="{{ route('products.show', [$randomFavorite, $randomFavorite->slug]) }}" title="View Product">{{ $randomFavorite->name }}</a></h4>
                         <p class="card-text">{{ $randomFavorite->description_truncated }}</p>
@@ -69,7 +69,7 @@
                             @foreach ($lastProducts as $product)
                             <div class="col-sm">
                                 <div class="card">
-                                    <img class="card-img-top" src="{{ $product->image }}" alt="Card image cap">
+                                    <img class="card-img-top" src="{{ $product->image }}" alt="{{ $product->name }}">
                                     <div class="card-body">
                                         <h4 class="card-title"><a href="{{ route('products.show', [$product, $product->slug]) }}" title="View Product">{{ $product->name }}</a></h4>
                                         <p class="card-text">{{ $product->description_truncated }}</p>
