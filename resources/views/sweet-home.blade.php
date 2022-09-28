@@ -13,20 +13,16 @@
             <div class="col">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <ol class="carousel-indicators">
-                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+                        @foreach ($randomProducts as $key => $product)
+                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $key }}" class="@if ($loop->first) active @endif"></li>
+                        @endforeach
                     </ol>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="https://dummyimage.com/855x365/55595c/fff" alt="First slide">
+                        @foreach ($randomProducts as $product)
+                        <div class="carousel-item @if ($loop->first) active @endif">
+                            <img class="d-block w-100" height="430" src="{{ $product->image }}" alt="{{ $product->name }}">
                         </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="https://dummyimage.com/855x365/a30ca3/fff" alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="https://dummyimage.com/855x365/1443ff/fff" alt="Third slide">
-                        </div>
+                        @endforeach
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -43,16 +39,16 @@
                     <div class="card-header bg-success text-white text-uppercase">
                         <i class="fa fa-heart"></i> Coup de coeur
                     </div>
-                    <img class="img-fluid border-0" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
+                    <img class="img-fluid border-0" src="{{ $randomFavorite->image }}" alt="Card image cap">
                     <div class="card-body">
-                        <h4 class="card-title text-center"><a href="{{ route('products.show', [1, 'a']) }}" title="View Product">Produit</a></h4>
-                        <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                        <h4 class="card-title text-center"><a href="{{ route('products.show', [$randomFavorite, $randomFavorite->slug]) }}" title="View Product">{{ $randomFavorite->name }}</a></h4>
+                        <p class="card-text">{{ $randomFavorite->description_truncated }}</p>
                         <div class="row">
                             <div class="col">
-                                <p class="btn btn-danger w-100">99,00 &euro;</p>
+                                <p class="btn btn-danger w-100">{{ $randomFavorite->price_formatted }}</p>
                             </div>
                             <div class="col">
-                                <a href="{{ route('products.show', [1, 'a']) }}" class="btn btn-success w-100">Voir</a>
+                                <a href="{{ route('products.show', [$randomFavorite, $randomFavorite->slug]) }}" class="btn btn-success w-100">Voir</a>
                             </div>
                         </div>
                     </div>
@@ -70,15 +66,16 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
+                            @foreach ($lastProducts as $product)
                             <div class="col-sm">
                                 <div class="card">
-                                    <img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
+                                    <img class="card-img-top" src="{{ $product->image }}" alt="Card image cap">
                                     <div class="card-body">
-                                        <h4 class="card-title"><a href="{{ route('products.show', [1, 'a']) }}" title="View Product">Produit</a></h4>
-                                        <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                                        <h4 class="card-title"><a href="{{ route('products.show', [$product, $product->slug]) }}" title="View Product">{{ $product->name }}</a></h4>
+                                        <p class="card-text">{{ $product->description_truncated }}</p>
                                         <div class="row">
                                             <div class="col">
-                                                <p class="btn btn-danger w-100">99,00 &euro;</p>
+                                                <p class="btn btn-danger w-100">{{ $product->price_formatted }}</p>
                                             </div>
                                             <div class="col">
                                                 <a href="cart.html" class="btn btn-success w-100">Ajouter</a>
@@ -87,57 +84,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm">
-                                <div class="card">
-                                    <img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title"><a href="{{ route('products.show', [1, 'a']) }}" title="View Product">Produit</a></h4>
-                                        <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="btn btn-danger w-100">99,00 &euro;</p>
-                                            </div>
-                                            <div class="col">
-                                                <a href="cart.html" class="btn btn-success w-100">Ajouter</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <div class="card">
-                                    <img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title"><a href="{{ route('products.show', [1, 'a']) }}oducts.show', [1, 'a']) }}oducts.show', [1, 'a']) }}oducts.show', [1, 'a']) }}" title="View Product">Produit</a></h4>
-                                        <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="btn btn-danger w-100">99,00 &euro;</p>
-                                            </div>
-                                            <div class="col">
-                                                <a href="cart.html" class="btn btn-success w-100">Ajouter</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <div class="card">
-                                    <img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title"><a href="{{ route('products.show', [1, 'a']) }}" title="View Product">Produit</a></h4>
-                                        <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="btn btn-danger w-100">99,00 &euro;</p>
-                                            </div>
-                                            <div class="col">
-                                                <a href="cart.html" class="btn btn-success w-100">Ajouter</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

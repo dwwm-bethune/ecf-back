@@ -9,6 +9,10 @@ body {
     border-radius: 0.3rem;
 }
 
+.carousel-item img {
+    object-fit: cover;
+}
+
 .card-title a {
     text-decoration: none;
 }
