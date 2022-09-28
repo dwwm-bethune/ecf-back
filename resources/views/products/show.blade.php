@@ -3,8 +3,8 @@
 @section('content')
     <section class="jumbotron text-center">
         <div class="container">
-            <h1 class="jumbotron-heading">Produit</h1>
-            <p class="lead text-muted mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro commodi aliquam veniam fuga suscipit itaque labore natus accusamus numquam, perferendis in? Incidunt libero dignissimos unde fuga voluptatem omnis accusamus delectus.</p>
+            <h1 class="jumbotron-heading">{{ $product->name }}</h1>
+            <p class="lead text-muted mb-0">{{ $product->description }}</p>
         </div>
     </section>
 
@@ -14,10 +14,30 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('sweet-home') }}">Accueil</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('categories.show', [1, 'a']) }}">Catégorie</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Produit</li>
+                        <li class="breadcrumb-item"><a href="{{ route('categories.show', [$product->category, $product->category->slug]) }}">{{ $product->category->name }}</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ $product->name }}</li>
                     </ol>
                 </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal image -->
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">{{ $product->name }}</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img class="img-fluid" src="{{ $product->image }}" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
@@ -29,7 +49,7 @@
                 <div class="card bg-light mb-3">
                     <div class="card-body">
                         <a href="" data-bs-toggle="modal" data-bs-target="#productModal">
-                            <img class="img-fluid" src="https://dummyimage.com/800x800/55595c/fff" />
+                            <img class="img-fluid" src="{{ $product->image }}" />
                             <p class="text-center">Zoom</p>
                         </a>
                     </div>
@@ -40,16 +60,18 @@
             <div class="col-12 col-lg-6 add_to_cart_block">
                 <div class="card bg-light mb-3">
                     <div class="card-body">
-                        <p class="price">99,00 &euro;</p>
-                        <p class="price_discounted">149.90 &euro;</p>
+                        <p class="price">{{ $product->promo }}</p>
+                        @if ($product->promo)
+                        <p class="price_discounted">{{ $product->price_formatted }}</p>
+                        @endif
                         <form method="get" action="cart.html">
                             <div class="mb-3">
                                 <label for="colors">Couleur</label>
                                 <select class="form-select" id="colors">
                                     <option selected>Choisir</option>
-                                    <option value="1">Bleu</option>
-                                    <option value="2">Rouge</option>
-                                    <option value="3">Vert</option>
+                                    @foreach ($product->colors as $color)
+                                    <option value="{{ $color }}">{{ $color }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -76,7 +98,7 @@
                             <ul class="list-inline">
                                 <li class="list-inline-item"><i class="fa fa-truck fa-2x"></i><br/>Livraison rapide</li>
                                 <li class="list-inline-item"><i class="fa fa-credit-card fa-2x"></i><br/>Paiement sécurisé</li>
-                                <li class="list-inline-item"><i class="fa fa-phone fa-2x"></i><br/>+33 1 22 54 65 60</li>
+                                <li class="list-inline-item"><i class="fa fa-phone fa-2x"></i><br/> {{ config('services.info.phone') }}</li>
                             </ul>
                         </div>
                         <div class="reviews_product p-3 mb-2 ">
@@ -104,10 +126,7 @@
                     <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-align-justify"></i> Description</div>
                     <div class="card-body">
                         <p class="card-text">
-                            Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un peintre anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
-                        </p>
-                        <p class="card-text">
-                            Contrairement à une opinion répandue, le Lorem Ipsum n'est pas simplement du texte aléatoire. Il trouve ses racines dans une oeuvre de la littérature latine classique datant de 45 av. J.-C., le rendant vieux de 2000 ans. Un professeur du Hampden-Sydney College, en Virginie, s'est intéressé à un des mots latins les plus obscurs, consectetur, extrait d'un passage du Lorem Ipsum, et en étudiant tous les usages de ce mot dans la littérature classique, découvrit la source incontestable du Lorem Ipsum. Il provient en fait des sections 1.10.32 et 1.10.33 du "De Finibus Bonorum et Malorum" (Des Suprêmes Biens et des Suprêmes Maux) de Cicéron. Cet ouvrage, très populaire pendant la Renaissance, est un traité sur la théorie de l'éthique. Les premières lignes du Lorem Ipsum, "Lorem ipsum dolor sit amet...", proviennent de la section 1.10.32.
+                            {!! Str::markdown($product->description) !!}
                         </p>
                     </div>
                 </div>

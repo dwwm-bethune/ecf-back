@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+@section('title')
+    Produits - @parent
+@endsection
+
 @section('content')
     <section class="jumbotron text-center">
         <div class="container">

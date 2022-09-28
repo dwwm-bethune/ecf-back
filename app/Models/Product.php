@@ -20,9 +20,9 @@ class Product extends Model
         return number_format($this->price, 2, ',', ' ').' €';
     }
 
-    public function price()
+    public function getPromoAttribute()
     {
-        return number_format($this->price, 2, ',', ' ').' €';
+        return number_format($this->price - $this->price * $this->discount / 100, 2, ',', ' ').'€';
     }
 
     public function category()
