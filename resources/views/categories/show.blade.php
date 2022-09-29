@@ -66,7 +66,7 @@
                                 <p class="btn btn-danger w-100">{{ $lastProduct->price_formatted }}</p>
                             </div>
                             <div class="col">
-                                <a href="/produits/{{ $lastProduct->id }}-{{ $lastProduct->slug }}" class="btn btn-success w-100">Voir</a>
+                                <a href="{{ route('products.show', [$lastProduct, $lastProduct->slug]) }}" class="btn btn-success w-100">Voir</a>
                             </div>
                         </div>
                     </div>

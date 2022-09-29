@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
@@ -29,3 +31,9 @@ Route::get('/produits', [ProductController::class, 'index'])->name('products');
 Route::get('/produits/{product}-{slug}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/categorie/{category}-{slug}', [CategoryController::class, 'show'])->name('categories.show');
 Route::get('/contactez-nous', [ContactController::class, 'index'])->name('contact');
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/produits', [AdminProductController::class, 'index'])->name('admin.products');
+Route::get('/admin/produits/creer', [AdminProductController::class, 'create'])->name('admin.products.create');
+Route::post('/admin/produits', [AdminProductController::class, 'store']);
+Route::delete('/admin/produits/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.delete');

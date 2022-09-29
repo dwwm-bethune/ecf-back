@@ -10,6 +10,22 @@ class Product extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'slug',
+        'favorite',
+        'image',
+        'discount',
+        'category_id',
+    ];
+
     public function getDescriptionTruncatedAttribute()
     {
         return Str::limit($this->description, 20);
