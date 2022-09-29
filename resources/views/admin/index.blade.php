@@ -6,6 +6,6 @@
 </div>
 
 <div>
-    Bonjour Toto
+    Bonjour {{ Auth::user()->name }}
 </div>
 @endsection
