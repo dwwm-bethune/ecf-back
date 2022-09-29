@@ -35,8 +35,8 @@
                             @foreach ($colors as $color)
                             <li class="list-group-item">
                                 <div class="form-check">
-                                    <input type="checkbox" name="color[]" value="{{ $color->name }}" class="form-check-input" id="color-{{ $color->id }}">
-                                    <label class="form-check-label" for="color-{{ $color->id }}">{{ $color->name }}</label>
+                                    <input type="checkbox" name="colors[]" value="{{ $color->id }}" class="form-check-input" id="colors-{{ $color->id }}" @checked(in_array($color->id, request('colors', [])))>
+                                    <label class="form-check-label" for="colors-{{ $color->id }}">{{ $color->name }}</label>
                                 </div>
                             </li>
                             @endforeach
