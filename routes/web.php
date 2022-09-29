@@ -25,6 +25,7 @@ Route::get('/', function () {
         'randomProducts' => Product::inRandomOrder()->limit(3)->get(),
         'randomFavorite' => Product::where('favorite', true)->inRandomOrder()->first(),
         'lastProducts' => Product::latest()->limit(4)->get(),
+        'bestProducts' => Product::withAvg('reviews', 'note')->limit(4)->get()->sortByDesc('reviews_avg_note'),
     ]);
 })->name('sweet-home');
 
