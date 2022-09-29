@@ -55,6 +55,50 @@ class AdminProductController
         return redirect()->route('admin.products');
     }
 
+    public function edit(Product $product)
+    {
+        return view('admin.products.edit', [
+            'product' => $product,
+            'colors' => Color::all(),
+            'categories' => Category::all(),
+        ]);
+    }
+
+    public function update(Product $product)
+    {
+        request()->validate([
+            'name' => 'required|min:3',
+            'description' => 'required|min:10',
+            'price' => 'required|numeric|between:99,1000',
+            'favorite' => 'boolean',
+            'image' => 'image|max:4096',
+            'discount' => 'required|numeric|between:0,100',
+            'category' => 'required|exists:categories,id',
+            'colors' => 'array',
+            'colors.*' => 'exists:colors,id',
+        ]);
+
+        $product->update([
+            'name' => $name = request('name'),
+            'slug' => Str::slug($name),
+            'description' => request('description'),
+            'price' => request('price'),
+            'favorite' => request()->filled('favorite'),
+            'discount' => request('discount'),
+            'category_id' => request('category'),
+        ]);
+
+        if (request()->file('image')) {
+            Storage::delete(str($product->image)->remove('/storage'));
+
+            $product->update([
+                'image' => '/storage/'.request()->file('image')->store('products'),
+            ]);
+        }
+
+        return redirect()->route('admin.products');
+    }
+
     public function destroy(Product $product)
     {
         Storage::delete(str($product->image)->remove('/storage'));

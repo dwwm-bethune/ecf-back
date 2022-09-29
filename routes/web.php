@@ -36,4 +36,6 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard')
 Route::get('/admin/produits', [AdminProductController::class, 'index'])->name('admin.products');
 Route::get('/admin/produits/creer', [AdminProductController::class, 'create'])->name('admin.products.create');
 Route::post('/admin/produits', [AdminProductController::class, 'store']);
+Route::get('/admin/produits/{product}/modifier', [AdminProductController::class, 'edit'])->name('admin.products.edit');
+Route::put('/admin/produits/{product}', [AdminProductController::class, 'update'])->name('admin.products.update');
 Route::delete('/admin/produits/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.delete');
