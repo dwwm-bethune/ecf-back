@@ -140,5 +140,25 @@
     <!-- JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+        //Plus & Minus for Quantity product
+        $(document).ready(function(){
+            var quantity = 1;
+    
+            $('.quantity-right-plus').click(function(e){
+                e.preventDefault();
+                var quantity = parseInt($('#quantity').val());
+                $('#quantity').val(quantity + 1);
+            });
+    
+            $('.quantity-left-minus').click(function(e){
+                e.preventDefault();
+                var quantity = parseInt($('#quantity').val());
+                if(quantity > 1){
+                    $('#quantity').val(quantity - 1);
+                }
+            });
+        });
+    </script>
 </body>
 </html>

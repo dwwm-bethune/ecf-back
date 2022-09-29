@@ -50,4 +50,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Color::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class)->latest();
+    }
 }
