@@ -31,6 +31,7 @@
                 <div class="card bg-light mb-3">
                     <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Filtres</div>
                     <form action="" method="get">
+                        <input type="hidden" name="q" value="{{ request('q') }}">
                         <ul class="list-group">
                             @foreach ($colors as $color)
                             <li class="list-group-item">

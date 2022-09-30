@@ -19,7 +19,7 @@ class ProductController
                         }
                     });
                 });
-            })->paginate(6)->withQueryString(),
+            })->where('name', 'like', '%'.request('q').'%')->paginate(6)->withQueryString(),
             'colors' => Color::all(),
             'lastProduct' => Product::latest()->first(),
             'categories' => Category::limit(5)->get(),

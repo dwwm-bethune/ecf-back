@@ -35,11 +35,11 @@
                     </li>
                 </ul>
 
-                <form class="form-inline my-2 my-lg-0 d-inline-flex">
+                <form class="form-inline my-2 my-lg-0 d-inline-flex" action="{{ route('products') }}">
                     <div class="input-group input-group-sm">
-                        <input type="text" class="form-control" placeholder="Recherche...">
+                        <input name="q" type="text" class="form-control" placeholder="Recherche..." value="{{ request('q') }}">
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-secondary btn-number">
+                            <button class="btn btn-secondary btn-number">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>

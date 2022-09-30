@@ -70,7 +70,7 @@
                                 <select class="form-select" id="colors">
                                     <option selected>Choisir</option>
                                     @foreach ($product->colors as $color)
-                                    <option value="{{ $color }}">{{ $color }}</option>
+                                    <option value="{{ $color->id }}">{{ $color->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -103,12 +103,10 @@
                         </div>
                         <div class="reviews_product p-3 mb-2 ">
                             {{ $product->reviews->count() }} avis
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            ({{ $product->reviews->avg('note') }}/5)
+                            @for ($i = 0; $i < ceil($avg = $product->reviews->avg('note')); $i++)
+                            <span class="fa fa-star"></span>
+                            @endfor
+                            ({{ $avg }}/5)
                             <a class="pull-right" href="#reviews">Voir tous les avis</a>
                         </div>
                         <div class="datasheet p-3 mb-2 bg-info text-white">
