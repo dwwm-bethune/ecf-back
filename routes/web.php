@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
@@ -33,6 +34,8 @@ Route::get('/produits', [ProductController::class, 'index'])->name('products');
 Route::get('/produits/{product}-{slug}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/categorie/{category}-{slug}', [CategoryController::class, 'show'])->name('categories.show');
 Route::get('/contactez-nous', [ContactController::class, 'index'])->name('contact');
+
+Route::get('/panier', [CartController::class, 'index'])->name('cart');
 
 Route::post('/commentaire/{product}', [ReviewController::class, 'store'])->name('reviews.store');
 
