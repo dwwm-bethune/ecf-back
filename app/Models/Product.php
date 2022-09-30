@@ -38,7 +38,14 @@ class Product extends Model
 
     public function getPromoAttribute()
     {
-        return number_format($this->price - $this->price * $this->discount / 100, 2, ',', ' ').'€';
+        return number_format($this->price - $this->price * $this->discount / 100, 2, ',', ' ').' €';
+    }
+
+    public function price($quantity)
+    {
+        $promo = round($this->price - $this->price * $this->discount / 100, 2);
+
+        return number_format($promo * $quantity, 2, ',', ' ').' €';
     }
 
     public function category()

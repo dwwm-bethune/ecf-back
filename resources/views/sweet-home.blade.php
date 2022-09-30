@@ -84,7 +84,10 @@
                                                 <p class="btn btn-danger w-100">{{ $product->price_formatted }}</p>
                                             </div>
                                             <div class="col">
-                                                <a href="cart.html" class="btn btn-success w-100">Ajouter</a>
+                                                <form action="{{ route('cart.store', $product) }}" method="post">
+                                                    @csrf
+                                                    <button class="btn btn-success w-100">Ajouter</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -119,7 +122,10 @@
                                                 <p class="btn btn-danger w-100">{{ $product->price_formatted }}</p>
                                             </div>
                                             <div class="col">
-                                                <a href="cart.html" class="btn btn-success w-100">Ajouter</a>
+                                                <form action="{{ route('cart.store', $product) }}" method="post">
+                                                    @csrf
+                                                    <button class="btn btn-success w-100">Ajouter</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

@@ -36,6 +36,8 @@ Route::get('/categorie/{category}-{slug}', [CategoryController::class, 'show'])-
 Route::get('/contactez-nous', [ContactController::class, 'index'])->name('contact');
 
 Route::get('/panier', [CartController::class, 'index'])->name('cart');
+Route::post('/panier/{product}', [CartController::class, 'store'])->name('cart.store');
+Route::delete('/panier/{product}', [CartController::class, 'destroy'])->name('cart.destroy');
 
 Route::post('/commentaire/{product}', [ReviewController::class, 'store'])->name('reviews.store');
 

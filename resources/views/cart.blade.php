@@ -16,44 +16,38 @@
                         <tr>
                             <th scope="col"> </th>
                             <th scope="col">Produit</th>
-                            <th scope="col">Disponibilité</th>
+                            <th scope="col">Couleur</th>
                             <th scope="col" class="text-center">Quantité</th>
                             <th scope="col" class="text-right">Prix</th>
                             <th> </th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach (session('cart', []) as $item)
                         <tr>
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <td>Dada</td>
-                            <td>En stock</td>
-                            <td><input class="form-control" type="text" value="1" /></td>
-                            <td class="text-right">124,90 €</td>
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                            <td><img width="75" src="{{ $item->product->image }}" /></td>
+                            <td>{{ $item->product->name }}</td>
+                            <td>{{ optional($item->color)->name }}</td>
+                            <td><input class="form-control" type="text" value="{{ $item->quantity }}" /></td>
+                            <td class="text-right">
+                                {{ $item->product->price($item->quantity) }}
+                                ({{ $item->product->promo }})
+                            </td>
+                            <td class="text-right">
+                                <form action="{{ route('cart.destroy', $item->product) }}" method="post">
+                                    @csrf @method('delete')
+                                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                </form>
+                            </td>
                         </tr>
-                        <tr>
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <td>Toto</td>
-                            <td>En stock</td>
-                            <td><input class="form-control" type="text" value="1" /></td>
-                            <td class="text-right">33,90 €</td>
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                        </tr>
-                        <tr>
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <td>Titi</td>
-                            <td>En stock</td>
-                            <td><input class="form-control" type="text" value="1" /></td>
-                            <td class="text-right">70,00 €</td>
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                        </tr>
+                        @endforeach
                         <tr>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td>Sous-Total</td>
-                            <td class="text-right">255,90 €</td>
+                            <td class="text-right">{{ $subtotal }}</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -61,7 +55,7 @@
                             <td></td>
                             <td></td>
                             <td>Frais de port</td>
-                            <td class="text-right">6,90 €</td>
+                            <td class="text-right">{{ $delivery }}</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -69,7 +63,7 @@
                             <td></td>
                             <td></td>
                             <td><strong>Total</strong></td>
-                            <td class="text-right"><strong>346,90 €</strong></td>
+                            <td class="text-right"><strong>{{ $total }}</strong></td>
                         </tr>
                     </tbody>
                 </table>

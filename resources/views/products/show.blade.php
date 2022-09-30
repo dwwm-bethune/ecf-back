@@ -64,10 +64,11 @@
                         @if ($product->promo)
                         <p class="price_discounted">{{ $product->price_formatted }}</p>
                         @endif
-                        <form method="get" action="cart.html">
+                        <form method="post" action="{{ route('cart.store', $product) }}">
+                            @csrf
                             <div class="mb-3">
-                                <label for="colors">Couleur</label>
-                                <select class="form-select" id="colors">
+                                <label for="color">Couleur</label>
+                                <select class="form-select" id="color" name="color">
                                     <option selected>Choisir</option>
                                     @foreach ($product->colors as $color)
                                     <option value="{{ $color->id }}">{{ $color->name }}</option>
@@ -78,11 +79,11 @@
                                 <label>Quantité :</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <button type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
+                                        <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-type="minus" data-field="">
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control"  id="quantity" name="quantity" min="1" max="100" value="1">
+                                    <input type="text" class="form-control" id="quantity" name="quantity" min="1" max="100" value="1">
                                     <div class="input-group-append">
                                         <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
                                             <i class="fa fa-plus"></i>
@@ -90,9 +91,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="cart.html" class="btn btn-success btn-lg w-100 text-uppercase">
+                            <button class="btn btn-success btn-lg w-100 text-uppercase">
                                 <i class="fa fa-shopping-cart"></i> Ajouter
-                            </a>
+                            </button>
                         </form>
                         <div class="product_rassurance">
                             <ul class="list-inline">
