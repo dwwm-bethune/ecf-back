@@ -36,6 +36,7 @@
                             <td class="text-right">
                                 <form action="{{ route('cart.destroy', $item->product) }}" method="post">
                                     @csrf @method('delete')
+                                    <input type="hidden" name="color" value="{{ optional($item->color)->id }}">
                                     <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                                 </form>
                             </td>
