@@ -23,7 +23,6 @@ class ProductFactory extends Factory
             'price' => fake()->randomFloat(2, 0, 1000),
             'slug' => fake()->slug(1),
             'favorite' => fake()->boolean(),
-            // 'colors' => fake()->randomElements(['Rouge', 'Vert', 'Bleu'], rand(0, 3)),
             'image' => fake()->imageUrl(),
             'discount' => fake()->randomFloat(2, 0, 100),
             'category_id' => Category::factory(),

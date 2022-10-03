@@ -107,7 +107,7 @@
                             @for ($i = 0; $i < ceil($avg = $product->reviews->avg('note')); $i++)
                             <span class="fa fa-star"></span>
                             @endfor
-                            ({{ $avg }}/5)
+                            ({{ round($avg, 2) }}/5)
                             <a class="pull-right" href="#reviews">Voir tous les avis</a>
                         </div>
                         <div class="datasheet p-3 mb-2 bg-info text-white">
@@ -162,7 +162,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('reviews.store', $review) }}" method="post">
+                        <form action="{{ route('reviews.store', $product) }}" method="post">
                             @csrf
 
                             <div class="mb-3">

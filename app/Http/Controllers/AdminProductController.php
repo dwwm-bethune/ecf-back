@@ -96,6 +96,8 @@ class AdminProductController
             ]);
         }
 
+        $product->colors()->sync(request('colors'));
+
         return redirect()->route('admin.products');
     }
 

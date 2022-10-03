@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         Product::factory(100)->afterCreating(function (Product $product) use ($categories, $colors) {
             $product->category()->associate($categories->random(1)->first())->save();
             $product->colors()->attach($colors->random(rand(0, 5))->pluck('id')->all());
-            $product->reviews()->saveMany(Review::factory(rand(0, 5))->create(['product_id' => $product->id]));
+            Review::factory(rand(0, 5))->create(['product_id' => $product->id]);
         })->create(['category_id' => null]);
     }
 }

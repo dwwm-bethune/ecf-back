@@ -13,11 +13,13 @@ class ProductController
         return view('products.index', [
             'products' => Product::when(request('colors'), function ($query) {
                 $query->whereHas('colors', function ($query) {
-                    $query->where(function ($query) {
+                    // WHERE blabla and (id = 1 or id = 2 or id = 3)
+                    $query->whereIn('id', request('colors'));
+                    /* $query->where(function ($query) {
                         foreach (request('colors', []) as $color) {
                             $query->orWhere('id', $color);
                         }
-                    });
+                    }); */
                 });
             })->where('name', 'like', '%'.request('q').'%')->paginate(6)->withQueryString(),
             'colors' => Color::all(),

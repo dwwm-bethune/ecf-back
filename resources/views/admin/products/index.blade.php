@@ -25,7 +25,7 @@
                     <img width="80" src="{{ $product->image }}" alt="">
                 </td>
                 <td>{{ $product->name }}</td>
-                <td>{{ $product->price_truncated }}</td>
+                <td>{{ $product->price_formatted }}</td>
                 <td>
                     <a class="btn btn-primary" href="{{ route('admin.products.edit', $product) }}">Modifier</a>
                     <form action="{{ route('admin.products.update', $product) }}" method="post" class="d-inline">

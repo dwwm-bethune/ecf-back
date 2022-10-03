@@ -28,7 +28,7 @@ class Product extends Model
 
     public function getDescriptionTruncatedAttribute()
     {
-        return Str::limit($this->description, 20);
+        return Str::words($this->description, 5);
     }
 
     public function getPriceFormattedAttribute()
